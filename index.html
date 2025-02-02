@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovative German Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                      url('https://images.unsplash.com/photo-1587330979470-3595ac045ab0') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            border-bottom: 3px solid #dd0000;
+        }
+        form#contactForm button {
+background: #dd0000;
+    color: white;
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+    font-size: 1.1rem;
+}
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .flags {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(45deg, #000, #dd0000);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Navigation */
+        nav {
+            background: #000;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #dd0000;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        /* Why Join Section */
+        .why-join {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: #dd0000;
+            text-align: center;
+            margin: 2rem 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card i {
+            color: #dd0000;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+       
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+        }
+
+        /* Courses Section */
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .course-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 2px solid #dd0000;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .discount-badge {
+            background: #dd0000;
+            color: white;
+            padding: 0.8rem 2rem;
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            transform: rotate(45deg);
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 150px;
+            text-align: center;
+        }
+
+        .price-container {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .discounted-price {
+            color: #dd0000;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* Instructors Section */
+        .instructors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .instructor-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background: #dd0000;
+            color: white;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            background: #990000;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            nav a {
+                display: block;
+                margin: 0.5rem;
+            }
+            
+            .discount-badge {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.5rem;
+                right: -35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="flags">🇵🇰 🤝 🇩🇪</div>
+            <h1>Learn German Through Culture</h1>
+            <p>Master A1 to B1 Levels with Professional Guidance</p>
+        </div>
+    </section>
+
+    <!-- Header -->
+    <header>
+        <h1>Innovative German Academy</h1>
+        <p>Premium German Language Institute 🇩🇪</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#courses">Courses</a>
+        <a href="#instructors">Instructors</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Cultural Slideshow -->
+    <div class="cultural-slideshow">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb')"></div>
+                <div class="swiper-slide" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Flag_of_Pakistan_and_Germany.png/1280px-Flag_of_Pakistan_and_Germany.png')"></div>
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1587330979470-3595ac045ab0')"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <!-- Why Join Us -->
+    <section class="why-join">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Goethe Standards</h3>
+                    <p>Curriculum aligned with Goethe-Institut framework</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-landmark"></i>
+                    <h3>Cultural Immersion</h3>
+                    <p>Learn through German traditions and modern life</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Expert Instructors</h3>
+                    <p>Certified teachers with teaching experience</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Scientific Approach</h3>
+                    <p>Educational psychology-based methodology</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Online Classes</h3>
+                    <p>Flexible virtual learning options</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>1-on-1 Sessions</h3>
+                    <p>Personalized physical classroom sessions are available only in Karachi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <div class="container" id="courses">
+        <h2 class="section-title">Our Courses</h2>
+        <div class="courses">
+            <div class="course-card">
+                <div class="discount-badge">20% OFF</div>
+                <h3>German A1 Level</h3>
+                <div class="price-container">
+                    <span class="original-price">25,000 PKR</span>
+                    <span class="discounted-price">20,000 PKR</span>
+                </div>
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li><i class="fas fa-check"></i> Basic Grammar & Vocabulary</li>
+                    <li><i class="fas fa-check"></i> Daily Conversations</li>
+                    <li><i class="fas fa-check"></i> Cultural Introduction</li>
+                </ul>
+                <button class="btn" onclick="scrollToForm()">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <div class="discount-badge">20% OFF</div>
+                <h3>German A2 Level</h3>
+                <div class="price-container">
+                    <span class="original-price">25,000 PKR</span>
+                    <span class="discounted-price">20,000 PKR</span>
+                </div>
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li><i class="fas fa-check"></i> Intermediate Grammar</li>
+                    <li><i class="fas fa-check"></i> Professional Communication</li>
+                    <li><i class="fas fa-check"></i> Exam Preparation</li>
+                </ul>
+                <button class="btn" onclick="scrollToForm()">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <div class="discount-badge">12% OFF</div>
+                <h3>German B1 Level</h3>
+                <div class="price-container">
+                    <span class="original-price">40,000 PKR</span>
+                    <span class="discounted-price">35,000 PKR</span>
+                </div>
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li><i class="fas fa-check"></i> Advanced Grammar</li>
+                    <li><i class="fas fa-check"></i> Professional Writing</li>
+                    <li><i class="fas fa-check"></i> Exam Strategies</li>
+                </ul>
+                <button class="btn" onclick="scrollToForm()">Enroll Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructors Section -->
+    <div class="container" id="instructors">
+        <h2 class="section-title">Our Instructors</h2>
+        <div class="instructors">
+            <div class="instructor-card">
+                <h3>Alyan Haider</h3>
+                <p><i class="fas fa-certificate"></i> B2 Certification in Progress</p>
+                <p><i class="fas fa-users"></i> Interactive Learning Expert</p>
+                <p><i class="fas fa-clock"></i> Interactive Learning with Real-Life Scenarios</p>
+            </div>
+            <div class="instructor-card">
+                <h3>Bilal Ahmed</h3>
+                <p><i class="fas fa-certificate"></i> B2 Certification in Progress</p>
+                <p><i class="fas fa-book-open"></i> Grammar Specialist</p>
+                <p><i class="fas fa-brain"></i> Practical Application Focus</p>
+            </div>
+            <div class="instructor-card">
+                <h3>Wassy</h3>
+                <p><i class="fas fa-certificate"></i> B2 Certified</p>
+                <p><i class="fas fa-book-open"></i> Grammar Specialist</p>
+                <p><i class="fas fa-brain"></i> Practical Application Focus</p>
+            </div>
+            <div class="instructor-card">
+                <h3>Urwa </h3>
+                <p><i class="fas fa-certificate"></i> C1 Certified German Instructor</p>
+                <p><i class="fas fa-chalkboard"></i> 2+ Years Teaching Experience</p>
+                <p><i class="fas fa-comments"></i> Conversational Expert</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="container" id="contact">
+        <div class="contact-form">
+            <h2 class="section-title">Enrollment Form</h2>
+            <form id="contactForm">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <select name="course" required>
+        <option value="">Select Course</option>
+        <option value="A1">A1 Course (20,000 PKR)</option>
+        <option value="A2">A2 Course (20,000 PKR)</option>
+        <option value="B1">B1 Course (35,000 PKR)</option>
+    </select>
+    <textarea name="message" placeholder="Why do you want to learn German?" rows="4" required></textarea>
+    <button type="submit">Submit Application</button>
+</form>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let form = this;
+        let formData = new FormData(form);
+
+        fetch("send_email.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Response show karega
+            form.reset(); // Form fields ko empty karega
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/923498660326" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="contact-info">
+            <div>
+                <i class="fas fa-envelope"></i><br>
+                alyanhaider840@gmail.com
+            </div>
+            <div>
+                <i class="fas fa-map-marker-alt"></i><br>
+                Karachi, Pakistan
+            </div>
+            <div>
+                <i class="fab fa-whatsapp"></i><br>
+                +92 349 8660326
+            </div>
+        </div>
+        <p style="margin-top: 2rem;">© 2024 Innovative German Academy</p>
+        <p style="margin-top: 1rem;">Goethe-Institut curriculum standards followed</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0
+            }
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</body>
+</html>
