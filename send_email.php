@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $to = "innovativegermanacadmey@gmail.com"; // Receiver's email
     $subject = "New Course Application";
@@ -21,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mail($to, $subject, $body, $headers)) {
         echo "Application submitted successfully!";
     } else {
-        echo "Failed to send application.";
+        $errorMessage = error_get_last()['message'];
+        echo "Failed to send application. Error: $errorMessage";
     }
 }
 ?>
